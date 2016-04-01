@@ -4,7 +4,7 @@ import "io"
 import "os"
 
 import "github.com/codegangsta/cli"
-import "github.com/NCI-GDC/gdc-client/client"
+import "github.com/gudCodes/gdc-client/client"
 
 // Logging flags shared between all commands.
 var log_flags = []cli.Flag{
