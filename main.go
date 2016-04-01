@@ -4,7 +4,34 @@ import "io"
 import "os"
 
 import "github.com/codegangsta/cli"
+
 import "github.com/gudCodes/gdc-client/client"
+
+// Deconstruct a cli context and call download
+// using context arguments and flags.
+func download(c *cli.Context) {
+	var gdc = client.NewClient(
+		c.String("host"),
+		c.Int("port"),
+	)
+
+	var res, _ = gdc.Download(
+		c.Args()[0],
+		c.String("token"),
+	)
+
+	io.Copy(os.Stdout, res)
+}
+
+// Deconstruct a cli context and call upload
+// using context arguments and flags.
+func upload(c *cli.Context) {
+}
+
+// Deconstruct a cli context and call query
+// using context arguments and flags.
+func query(c *cli.Context) {
+}
 
 // Logging flags shared between all commands.
 var log_flags = []cli.Flag{
@@ -86,30 +113,4 @@ func main() {
 	}
 
 	app.Run(os.Args)
-}
-
-// Deconstruct a cli context and call download
-// using context arguments and flags.
-func download(c *cli.Context) {
-	var gdc = client.NewClient(
-		c.String("host"),
-		c.Int("port"),
-	)
-
-	var res, _ = gdc.Download(
-		c.Args()[0],
-		c.String("token"),
-	)
-
-	io.Copy(os.Stdout, res)
-}
-
-// Deconstruct a cli context and call upload
-// using context arguments and flags.
-func upload(c *cli.Context) {
-}
-
-// Deconstruct a cli context and call query
-// using context arguments and flags.
-func query(c *cli.Context) {
 }
