@@ -1,9 +1,10 @@
 package main
 
+import "io"
 import "os"
 
 import "github.com/codegangsta/cli"
-import "github.com/NCI-GDC/gdc-client/client/actions"
+import "github.com/NCI-GDC/gdc-client/client"
 
 // Logging flags shared between all commands.
 var log_flags = []cli.Flag{
@@ -90,34 +91,25 @@ func main() {
 // Deconstruct a cli context and call download
 // using context arguments and flags.
 func download(c *cli.Context) {
-	actions.Download(
+	var gdc = client.NewClient(
 		c.String("host"),
 		c.Int("port"),
-		c.String("token"),
-		c.Args()[0],
-		c.Args()[1],
 	)
+
+	var res, _ = gdc.Download(
+		c.Args()[0],
+		c.String("token"),
+	)
+
+	io.Copy(os.Stdout, res)
 }
 
 // Deconstruct a cli context and call upload
 // using context arguments and flags.
 func upload(c *cli.Context) {
-	actions.Upload(
-		c.String("host"),
-		c.Int("port"),
-		c.String("token"),
-		c.Args()[0],
-		c.Args()[1],
-	)
 }
 
 // Deconstruct a cli context and call query
 // using context arguments and flags.
 func query(c *cli.Context) {
-	actions.Query(
-		c.String("host"),
-		c.Int("port"),
-		c.String("token"),
-		c.Args()[0],
-	)
 }
