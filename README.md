@@ -125,8 +125,8 @@ text. *Caution should be taken when used in production environments.*
 
 In some cases it may be necessary to direct the client towards a different
 host than the public GDC API. This may include certain types of HTTP(S)
-proxies, such as UDT-enabled Parcel proxies for long-distance, high latency
-networks.
+proxies, such as UDT-enabled [Parcel](https://github.com/LabAdvComp/parcel)
+proxies for long-distance, high latency networks.
 
 ###### -P / --port
 
