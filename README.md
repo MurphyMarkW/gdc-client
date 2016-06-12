@@ -78,6 +78,12 @@ $ gdc-client --version
 gdc-client version 0.0.1
 ```
 
+### Encryption
+
+The GDC Client is shipped with SSL / TLS encryption built-in and enabled.
+All pre-built versions of the GDC Client enforce verification of GDC API
+certificates and use of SSL / TLS encrypted connections.
+
 ### Global Flags
 
 The GDC Client operates as a thin HTTP(S) wrapper with some additional logic
