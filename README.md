@@ -148,6 +148,18 @@ GDC portal after logging in.
 
 The GDC Client is aware of certain environment variables.
 
+###### GDC\_API\_HOST
+
+The `GDC_API_HOST` environment variable performs the same action as
+`-H` / `--host`. In the event that both `GDC_API_HOST` and `-H` / `--host`
+are specified, the `-H` / `--host` will be used.
+
+###### GDC\_API\_PORT
+
+The `GDC_API_PORT` environment variable performs the same action as
+`-P` / `--port`. In the event that both `GDC_API_PORT` and `-P` / `--port`
+are specified, the `-P` / `--port` will be used.
+
 ###### http{,s}\_proxy / HTTP{,S}\_PROXY
 
 The `http_proxy` and `https_proxy` environment variables are both respected
