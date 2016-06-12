@@ -156,20 +156,20 @@ The `GDC_API_PORT` environment variable performs the same action as
 `-P` / `--port`. In the event that both `GDC_API_PORT` and `-P` / `--port`
 are specified, the `-P` / `--port` will be used.
 
-###### http{,s}\_proxy / HTTP{,S}\_PROXY
+###### HTTP{,S}\_PROXY / http{,s}\_proxy
 
-The `http_proxy` and `https_proxy` environment variables are both respected
-by the GDC Client. Note that `https_proxy` takes precedence over `http_proxy`
+The `HTTP_PROXY` and `HTTPS_PROXY` environment variables are both respected
+by the GDC Client. Note that `HTTPS_PROXY` takes precedence over `HTTP_PROXY`
 in all cases.
 
-###### no\_proxy / NO\_PROXY
+###### NO\_PROXY / no\_proxy
 
-The `no_proxy` environment variable is respected by the GDC Client. This can
+The `NO_PROXY` environment variable is respected by the GDC Client. This can
 be used to avoid proxying connections to `gdc-api.nci.nih.gov` by adding the
-GDC API hostname to the `no_proxy` environment variable:
+GDC API hostname to the `NO_PROXY` environment variable:
 
 ```
-$ export no_proxy=gdc-api.nci.nih.gov,${no_proxy}
+$ export NO_PROXY=gdc-api.nci.nih.gov,${NO_PROXY}
 ```
 
 This can be useful in environments that require low-volume traffic to be
