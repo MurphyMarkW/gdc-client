@@ -70,11 +70,100 @@ OPTIONS:
    -P, --port "443"                 GDC API port [$GDC_API_PORT]
 ```
 
+The version of the client can be retrieved by supplying the `-v` or `--version`
+flags without any command specified.
+
+```
+$ gdc-client --version
+gdc-client version 0.0.1
+```
+
+### Global Flags
+
+The GDC Client operates as a thin HTTP(S) wrapper with some additional logic
+layered on top. All commands interact with the GDC API in some fashion, so
+certain flags are available for all commands. These include:
+
+###### --verbose
+
+Enables verbose logging. This can include useful information when used in
+an interactive fashion.
+
+###### --debug
+
+Enables debug logging. This implies `--verbose` and includes information used
+for identifying and diagnosing bugs in the client. Note that this can have a
+negative impact on performance and may print sensitive information in plain
+text. *Caution should be taken when used in production environments.*
+
+###### -H / --host
+
+In some cases it may be necessary to direct the client towards a different
+host than the public GDC API. This may include certain types of HTTP(S)
+proxies, such as UDT-enabled Parcel proxies for long-distance, high latency
+networks.
+
+###### -P / --port
+
+As with the `-H` / `--host` flags, alternative ports other than the standard
+`443` used for SSL-encrypted HTTP may be necessary.
+
+###### -t / --token-file
+
+A token file containing a GDC authentication token to be used with requests.
+Protected data stored by the GDC will need an authentication token in order
+to be accessed by clients. Authentication tokens can be downloaded from the
+GDC portal after logging in.
+
+### Environment Variables
+
+The GDC Client is aware of certain environment variables.
+
+###### http{,s}\_proxy / HTTP{,S}\_PROXY
+
+The `http_proxy` and `https_proxy` environment variables are both respected
+by the GDC Client. Note that `https_proxy` takes precedence over `http_proxy`
+in all cases.
+
+###### no\_proxy / NO\_PROXY
+
+The `no_proxy` environment variable is respected by the GDC Client. This can
+be used to avoid proxying connections to `gdc-api.nci.nih.gov` by adding the
+GDC API hostname to the `no_proxy` environment variable:
+
+```
+$ export no_proxy=gdc-api.nci.nih.gov,${no_proxy}
+```
+
+This can be useful in environments that require low-volume traffic to be
+proxied for security purposes, but allow certain high-volume traffic to known,
+trusted hosts to bypass the proxy.
+
 ### Download
 
 The `download` command is the most fundamental of the client functionality.
 By providing the client with a GDC UUID, the client will make a secure request
 to the GDC API and stream the data for the specified GDC UUID to standard out.
+
+```
+$ gdc-client download -h
+NAME:
+   gdc-client download - download data by GDC UUID
+
+USAGE:
+   gdc-client download [command options] id [path]
+
+CATEGORY:
+   data transfer
+
+OPTIONS:
+   --verbose                        verbose logging
+   --debug                          debug logging
+   -T, --token                      token string
+   -t, --token-file                 token file
+   -H, --host "gdc-api.nci.nih.gov" GDC API host [$GDC_API_HOST]
+   -P, --port "443"                 GDC API port [$GDC_API_PORT]
+```
 
 **NOTE** that this command can produce significant output, especially when
 working with large objects. This is an intended feature of the client that
@@ -106,6 +195,28 @@ data for the specified GDC UUIDs to the local filesystem. Directories and
 files will be created based upon the GDC UUIDs and filenames reported by
 the GDC. An optional target `path` may be supplied to specify the desired
 root directory to be used for download.
+
+```
+$ gdc-client download-bulk -h
+NAME:
+   gdc-client download-bulk - download data in bulk to filesystem
+
+USAGE:
+   gdc-client download-bulk [command options] [ID]+
+
+CATEGORY:
+   data transfer
+
+OPTIONS:
+   --verbose                verbose logging
+   --debug              debug logging
+   -T, --token              token string
+   -t, --token-file             token file
+   -H, --host "gdc-api.nci.nih.gov" GDC API host [$GDC_API_HOST]
+   -P, --port "443"         GDC API port [$GDC_API_PORT]
+   -p, --path "."           path to target directory
+   -m, --manifest           GDC manifest file
+```
 
 **NOTE** this command assumes a POSIX-like file system on UNIX-like operating
 systems, including OS X. On windows operating systems, the current or target
