@@ -47,6 +47,14 @@ GLOBAL OPTIONS:
    --version, -v    print the version
 ```
 
+The version of the client can be retrieved by supplying the `-v` or `--version`
+flags without any command specified.
+
+```
+$ gdc-client --version
+gdc-client version 0.0.1
+```
+
 Help for specific commands can be found by specifying the same `-h` or `--help`
 flags after the command's name.
 
@@ -68,14 +76,6 @@ OPTIONS:
    -t, --token-file                 token file
    -H, --host "gdc-api.nci.nih.gov" GDC API host [$GDC_API_HOST]
    -P, --port "443"                 GDC API port [$GDC_API_PORT]
-```
-
-The version of the client can be retrieved by supplying the `-v` or `--version`
-flags without any command specified.
-
-```
-$ gdc-client --version
-gdc-client version 0.0.1
 ```
 
 ### Encryption
