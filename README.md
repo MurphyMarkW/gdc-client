@@ -5,8 +5,23 @@ A community go implementation of the [Genomic Data Commons](https://gdc.nci.nih.
 
 ## Installation
 
+Pre-built versions of the GDC Client [are available](https://github.com/gudCodes/gdc-client/releases)
+for most major operating systems and architectures. Simply download and
+extract the binary in order to use the client.
+
+### Building From Source
+
+The GDC Client can be built from source using the Golang [Go command](https://golang.org/doc/).
+
 ```
 go get github.com/gudCodes/gdc-client
+```
+
+This will download and build the `gdc-client` package along with all external
+dependencies. The client can then be installed using the `install` command:
+
+```
+go install github.com/gudCodes/gdc-client
 ```
 
 Dependencies :
