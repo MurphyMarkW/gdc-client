@@ -84,6 +84,29 @@ The GDC Client is shipped with SSL / TLS encryption built-in and enabled.
 All pre-built versions of the GDC Client enforce verification of GDC API
 certificates and use of SSL / TLS encrypted connections.
 
+**Note** that proper SSL / TLS encryption and certificate verification can
+be disabled when modifying and building the client from source. Doing so may
+violate government regulations regarding the proper handling of protected data.
+Please contact GDC support if you are unsure whether a modification to the
+client is compliant with government regulations applicable to use of the GDC.
+
+### Authentication & Authorization
+
+The GDC API uses a token-based authentication mechanism for identifying users.
+Access to protected data via the GDC API will require a GDC auth token. This
+token identifies you as an individual and allows the GDC to track all actions
+taken by the holder of this token. A GDC auth token can be acquired by visiting
+the [GDC Portal](https://gdc-portal.nci.nih.gov/), logging in, and downloading
+a token file from your account drop-down menu.
+
+**Please secure your token and do not share with any other individual.**
+
+A GDC token is meant to be tied to a single individual. Sharing your token
+increases the likelihood of it being compromised and used by an unauthorized
+party. In the event that a token is believed to have been compromised, please
+contact [GDC Support](mailto:support@nci-gdc.datacommons.io) for assistance
+in revoking the token and getting a report of data access for your review.
+
 ### Global Flags
 
 The GDC Client operates as a thin HTTP(S) wrapper with some additional logic
