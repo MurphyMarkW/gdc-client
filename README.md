@@ -1,11 +1,7 @@
 # The GDC Client - Community Go Edition!
 [![Version](https://img.shields.io/badge/version-2016.04.0-red.svg?style=flat)](README.md) [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
-A community go implementation of the Genomic Data Commons Command Line Client and related libraries.
-
-References :
-
-* https://gdc.nci.nih.gov/
+A community go implementation of the [Genomic Data Commons](https://gdc.nci.nih.gov/) Command Line Client and related libraries.
 
 ## Installation
 
