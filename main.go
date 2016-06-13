@@ -1,27 +1,12 @@
 package main
 
-import "io"
 import "os"
 
-import "github.com/codegangsta/cli"
+import cli "github.com/codegangsta/cli"
+import log "github.com/Sirupsen/logrus"
 
 import "github.com/gudCodes/gdc-client/client"
-
-// Deconstruct a cli context and call download
-// using context arguments and flags.
-func download(c *cli.Context) {
-	var gdc = client.NewClient(
-		c.String("host"),
-		c.Int("port"),
-	)
-
-	var res, _ = gdc.Download(
-		c.Args()[0],
-		c.String("token"),
-	)
-
-	io.Copy(os.Stdout, res)
-}
+import "github.com/gudCodes/gdc-client/client/download"
 
 // Deconstruct a cli context and call upload
 // using context arguments and flags.
@@ -73,11 +58,30 @@ var host_flags = []cli.Flag{
 	},
 }
 
+func setup(c *cli.Context) error {
+
+	log.SetOutput(os.Stderr)
+
+	log.SetLevel(log.WarnLevel)
+
+	if c.Bool("verbose") {
+		log.SetLevel(log.InfoLevel)
+	}
+
+	if c.Bool("debug") {
+		log.SetLevel(log.DebugLevel)
+	}
+
+	return nil
+}
+
 func main() {
 	app := cli.NewApp()
 
 	app.Name = "gdc-client"
 	app.Usage = "The Genomics Data Commons Command Line Client"
+	app.Version = client.Version
+
 	app.UsageText = "gdc-client [command] ..."
 
 	var globals = []cli.Flag{}
@@ -90,25 +94,37 @@ func main() {
 			Name:      "query",
 			Flags:     append(globals, []cli.Flag{}...),
 			Usage:     "query metadata using GDC DSL",
+			Before:    setup,
 			Action:    query,
 			Category:  "metadata query",
-			ArgsUsage: "query",
+			ArgsUsage: "QUERY",
 		},
 		{
 			Name:      "upload",
 			Flags:     append(globals, []cli.Flag{}...),
 			Usage:     "upload data by GDC UUID",
+			Before:    setup,
 			Action:    upload,
 			Category:  "data transfer",
-			ArgsUsage: "id [path]",
+			ArgsUsage: "ID [PATH]",
 		},
 		{
 			Name:      "download",
 			Flags:     append(globals, []cli.Flag{}...),
-			Usage:     "download data by GDC UUID",
-			Action:    download,
+			Usage:     "download data to stdout",
+			Before:    setup,
+			Action:    download.DownloadAction,
 			Category:  "data transfer",
-			ArgsUsage: "id [path]",
+			ArgsUsage: "ID",
+		},
+		{
+			Name:      "download-bulk",
+			Flags:     append(globals, download.Flags...),
+			Usage:     "download data in bulk to filesystem",
+			Before:    setup,
+			Action:    download.DownloadBulkAction,
+			Category:  "data transfer",
+			ArgsUsage: "[ID]+",
 		},
 	}
 
