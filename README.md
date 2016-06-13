@@ -260,14 +260,14 @@ CATEGORY:
    data transfer
 
 OPTIONS:
-   --verbose                verbose logging
-   --debug              debug logging
-   -T, --token              token string
-   -t, --token-file             token file
+   --verbose                        verbose logging
+   --debug                          debug logging
+   -T, --token                      token string
+   -t, --token-file                 token file
    -H, --host "gdc-api.nci.nih.gov" GDC API host [$GDC_API_HOST]
-   -P, --port "443"         GDC API port [$GDC_API_PORT]
-   -p, --path "."           path to target directory
-   -m, --manifest           GDC manifest file
+   -P, --port "443"                 GDC API port [$GDC_API_PORT]
+   -p, --path "."                   path to target directory
+   -m, --manifest                   GDC manifest file
 ```
 
 **NOTE** this command assumes a POSIX-like file system on UNIX-like operating
