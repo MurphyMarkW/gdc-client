@@ -11,7 +11,6 @@ import "crypto/md5"
 import bar "gopkg.in/cheggaaa/pb.v1"
 import cli "github.com/codegangsta/cli"
 import log "github.com/Sirupsen/logrus"
-import errors "github.com/pkg/errors"
 
 var Flags = []cli.Flag{
 	cli.StringFlag{
@@ -54,7 +53,7 @@ func DownloadAction(c *cli.Context) {
 	client := NewDownloadClient(host, port)
 	res, err := client.Download(uuid, token)
 	if err != nil {
-		errors.Print(err)
+		log.Error("%s", err)
 		return
 	}
 
@@ -80,14 +79,14 @@ func DownloadBulkAction(c *cli.Context) {
 		client := NewDownloadClient(host, port)
 		res, err := client.Download(uuid, token)
 		if err != nil {
-			errors.Print(err)
+			log.Error("%s", err)
 			return
 		}
 
 		content_disposition := res.Header.Get("Content-Disposition")
 		media, params, err := mime.ParseMediaType(content_disposition)
 		if err != nil {
-			errors.Print(err)
+			log.Error("%s", err)
 			return
 		}
 
@@ -101,7 +100,7 @@ func DownloadBulkAction(c *cli.Context) {
 
 		ofs, err := os.Create(path.Join(uuid, params["filename"]))
 		if err != nil {
-			errors.Print(err)
+			log.Error("%s", err)
 			return
 		}
 
