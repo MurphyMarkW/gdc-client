@@ -9,7 +9,7 @@ import "crypto"
 import "crypto/md5"
 
 import bar "gopkg.in/cheggaaa/pb.v1"
-import cli "github.com/codegangsta/cli"
+import cli "github.com/urfave/cli"
 import log "github.com/Sirupsen/logrus"
 
 var Flags = []cli.Flag{
