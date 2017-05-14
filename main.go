@@ -2,7 +2,7 @@ package main
 
 import "os"
 
-import cli "github.com/codegangsta/cli"
+import cli "github.com/urfave/cli"
 import log "github.com/Sirupsen/logrus"
 
 import "github.com/gudCodes/gdc-client/client"

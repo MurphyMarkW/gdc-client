@@ -25,7 +25,7 @@ go install github.com/gudCodes/gdc-client
 ```
 
 Dependencies :
-* [github.com/codegangsta/cli](https://github.com/codegangsta/cli)
+* [github.com/urfave/cli](https://github.com/urfave/cli)
 
 ## Usage
 
