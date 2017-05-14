@@ -18,14 +18,7 @@ go get github.com/gudCodes/gdc-client
 ```
 
 This will download and build the `gdc-client` package along with all external
-dependencies. The client can then be installed using the `install` command:
-
-```
-go install github.com/gudCodes/gdc-client
-```
-
-Dependencies :
-* [github.com/urfave/cli](https://github.com/urfave/cli)
+dependencies.
 
 ## Usage
 
