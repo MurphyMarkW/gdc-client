@@ -18,14 +18,7 @@ go get github.com/gudCodes/gdc-client
 ```
 
 This will download and build the `gdc-client` package along with all external
-dependencies. The client can then be installed using the `install` command:
-
-```
-go install github.com/gudCodes/gdc-client
-```
-
-Dependencies :
-* [github.com/urfave/cli](https://github.com/urfave/cli)
+dependencies.
 
 ## Usage
 
@@ -42,20 +35,20 @@ USAGE:
    gdc-client [command] ...
 
 VERSION:
-   0.0.1
+   2017.0.1
 
 COMMANDS:
-  data transfer:
-    upload      upload data by GDC UUID
-    download        download data to stdout
-    download-bulk   download data in bulk to filesystem
-
-  metadata query:
-    query   query metadata using GDC DSL
+     help, h  Shows a list of commands or help for one command
+   data transfer:
+     upload         upload data by GDC UUID
+     download       download data to stdout
+     download-bulk  download data in bulk to filesystem
+   metadata query:
+     query  query metadata using GDC DSL
 
 GLOBAL OPTIONS:
-   --help, -h       show help
-   --version, -v    print the version
+   --help, -h     show help
+   --version, -v  print the version
 ```
 
 The version of the client can be retrieved by supplying the `-v` or `--version`
@@ -63,7 +56,7 @@ flags without any command specified.
 
 ```
 $ gdc-client --version
-gdc-client version 0.0.1
+gdc-client version 2017.0.1
 ```
 
 Help for specific commands can be found by specifying the same `-h` or `--help`
@@ -72,21 +65,21 @@ flags after the command's name.
 ```
 $ gdc-client download -h
 NAME:
-   gdc-client download - download data by GDC UUID
+   gdc-client download - download data to stdout
 
 USAGE:
-   gdc-client download [command options] id [path]
+   gdc-client download [command options] ID
 
 CATEGORY:
    data transfer
 
 OPTIONS:
-   --verbose                        verbose logging
-   --debug                          debug logging
-   -T, --token                      token string
-   -t, --token-file                 token file
-   -H, --host "gdc-api.nci.nih.gov" GDC API host [$GDC_API_HOST]
-   -P, --port "443"                 GDC API port [$GDC_API_PORT]
+   --verbose                     verbose logging
+   --debug                       debug logging
+   -T value, --token value       token string
+   -t value, --token-file value  token file
+   -H value, --host value        GDC API host (default: "gdc-api.nci.nih.gov") [$GDC_API_HOST]
+   -P value, --port value        GDC API port (default: 443) [$GDC_API_PORT]
 ```
 
 ### Encryption
@@ -303,20 +296,5 @@ $ samtools view -H e045df57-b8c4-4687-97bb-63b9f7a0357b/113075.bam
 $ samtools index e045df57-b8c4-4687-97bb-63b9f7a0357b/113075.bam
 
 $ samtools view e045df57-b8c4-4687-97bb-63b9f7a0357b/113075.bam chr1:412892-412892
-SOLEXA7_0100:5:100:5593:4686    16  chr1    412888  0   20M *   0   0   ACTGACTGACTGACTGACTG    9.(9B7/*?B'@-=+03(>,
-```
-
-### BAM
-
-**NOT IMPLEMENTED**
-
-Per byte, the GDC stores more BAM formatted data than any other data type.
-Because of this, certain functionality to ease the retrieval of regions of
-interest from BAM files is included with the client. By paring download with
-ranged requests, this can be used to slice small regions from otherwise large
-BAM files:
-
-```
-$ gdc-client bam -t SUPER_SECRET_TOKEN_FILE e045df57-b8c4-4687-97bb-63b9f7a0357b chr1:412892-412892 | samtools view
 SOLEXA7_0100:5:100:5593:4686    16  chr1    412888  0   20M *   0   0   ACTGACTGACTGACTGACTG    9.(9B7/*?B'@-=+03(>,
 ```
