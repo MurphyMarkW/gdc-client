@@ -35,7 +35,7 @@ USAGE:
    gdc-client [command] ...
 
 VERSION:
-   2017.0.1
+   0.0.3
 
 COMMANDS:
      help, h  Shows a list of commands or help for one command
@@ -56,7 +56,7 @@ flags without any command specified.
 
 ```
 $ gdc-client --version
-gdc-client version 2017.0.1
+gdc-client version 0.0.3
 ```
 
 Help for specific commands can be found by specifying the same `-h` or `--help`
