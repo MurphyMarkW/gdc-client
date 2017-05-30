@@ -1,5 +1,5 @@
 # The GDC Client - Community Go Edition!
-[![GitHub release](https://img.shields.io/github/release/gudcodes/gdc-client.svg)](releases) [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![Build Status](https://travis-ci.org/gudCodes/gdc-client.svg?branch=master)](https://travis-ci.org/gudCodes/gdc-client)
+[![GitHub release](https://img.shields.io/github/release/gudcodes/gdc-client.svg)](https://github.com/gudCodes/gdc-client/releases) [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![Build Status](https://travis-ci.org/gudCodes/gdc-client.svg?branch=master)](https://travis-ci.org/gudCodes/gdc-client)
 
 A community go implementation of the [Genomic Data Commons](https://gdc.nci.nih.gov/) Command Line Client and related libraries.
 
