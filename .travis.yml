@@ -4,7 +4,7 @@ dist: trusty
 sudo: false
 
 go:
-  - 1.8.x
+  - 1.13.x
 
 env:
   - BUILD_GOOS=linux BUILD_GOARCH=amd64
@@ -37,4 +37,4 @@ deploy:
   on:
     repo: gudCodes/gdc-client
     tags: true
-    condition: $TRAVIS_GO_VERSION =~ ^1\.8\.[0-9]+$
+    condition: $TRAVIS_GO_VERSION =~ ^1\.13\.[0-9]+$
