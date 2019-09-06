@@ -123,7 +123,7 @@ func DownloadBulkAction(c *cli.Context) {
 		verified := io.TeeReader(proxy, hash)
 
 		if _, err := io.Copy(ofs, verified); err != nil {
-			log.Fatalf(err)
+			log.Fatalf("%v", err)
 		}
 
 		pbar.Finish()
