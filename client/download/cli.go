@@ -40,7 +40,7 @@ func progress(reader io.Reader, length int64) io.Reader {
 
 func DownloadAction(c *cli.Context) {
 	if len(c.Args()) > 1 {
-		log.Fatal("more than one ID provided")
+		log.Fatalf("more than one ID provided")
 	}
 
 	host := c.String("host")
@@ -53,7 +53,7 @@ func DownloadAction(c *cli.Context) {
 	client := NewDownloadClient(host, port)
 	res, err := client.Download(uuid, token)
 	if err != nil {
-		log.Error("%s", err)
+		log.Errorf("%s", err)
 		return
 	}
 
@@ -67,7 +67,7 @@ func DownloadBulkAction(c *cli.Context) {
 	token := c.String("token")
 
 	if len(uuids) < 1 {
-		log.Fatal("must provide at least one ID")
+		log.Fatalf("must provide at least one ID")
 	}
 
 	log.Info("Downloading bulk...")
@@ -79,28 +79,28 @@ func DownloadBulkAction(c *cli.Context) {
 		client := NewDownloadClient(host, port)
 		res, err := client.Download(uuid, token)
 		if err != nil {
-			log.Error("%s", err)
+			log.Errorf("%s", err)
 			return
 		}
 
 		content_disposition := res.Header.Get("Content-Disposition")
 		media, params, err := mime.ParseMediaType(content_disposition)
 		if err != nil {
-			log.Error("%s", err)
+			log.Errorf("%s", err)
 			return
 		}
 
 		if media != "attachment" {
-			log.Fatal("non-attachment response from api")
+			log.Fatalf("non-attachment response from api")
 		}
 
 		if err := os.MkdirAll(uuid, 0700); err != nil {
-			log.Fatal(fmt.Sprintf("could not create directory %s", uuid))
+			log.Fatalf(fmt.Sprintf("could not create directory %s", uuid))
 		}
 
 		ofs, err := os.Create(path.Join(uuid, params["filename"]))
 		if err != nil {
-			log.Error("%s", err)
+			log.Errorf("%s", err)
 			return
 		}
 
@@ -123,15 +123,15 @@ func DownloadBulkAction(c *cli.Context) {
 		verified := io.TeeReader(proxy, hash)
 
 		if _, err := io.Copy(ofs, verified); err != nil {
-			log.Fatal(err)
+			log.Fatalf(err)
 		}
 
 		pbar.Finish()
 
 		if res.Header.Get("Content-MD5") != fmt.Sprintf("%x", hash.Sum(result)) {
-			log.Error(fmt.Sprintf("received %x", hash.Sum(result)))
-			log.Error(fmt.Sprintf("expected %s", res.Header.Get("Content-MD5")))
-			log.Fatal(fmt.Sprintf("error while hashing %s", uuid))
+			log.Errorf(fmt.Sprintf("received %x", hash.Sum(result)))
+			log.Errorf(fmt.Sprintf("expected %s", res.Header.Get("Content-MD5")))
+			log.Fatalf(fmt.Sprintf("error while hashing %s", uuid))
 		}
 	}
 }
