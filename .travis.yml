@@ -37,4 +37,3 @@ deploy:
   on:
     repo: MurphyMarkW/gdc-client
     tags: true
-    condition: $TRAVIS_GO_VERSION =~ ^1\.13\.[0-9]+$
