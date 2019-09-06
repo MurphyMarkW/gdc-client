@@ -5,8 +5,8 @@ import "os"
 import cli "github.com/urfave/cli"
 import log "github.com/Sirupsen/logrus"
 
-import "github.com/gudCodes/gdc-client/client"
-import "github.com/gudCodes/gdc-client/client/download"
+import "github.com/MurphyMarkW/gdc-client/client"
+import "github.com/MurphyMarkW/gdc-client/client/download"
 
 // Deconstruct a cli context and call upload
 // using context arguments and flags.

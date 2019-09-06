@@ -1,6 +1,6 @@
 package download
 
-import client "github.com/gudCodes/gdc-client/client"
+import client "github.com/MurphyMarkW/gdc-client/client"
 
 import "fmt"
 import "net/http"

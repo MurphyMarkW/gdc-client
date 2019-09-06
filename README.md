@@ -1,11 +1,11 @@
 # The GDC Client - Community Go Edition!
-[![GitHub release](https://img.shields.io/github/release/gudcodes/gdc-client.svg)](https://github.com/gudCodes/gdc-client/releases) [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![Build Status](https://travis-ci.org/gudCodes/gdc-client.svg?branch=master)](https://travis-ci.org/gudCodes/gdc-client)
+[![GitHub release](https://img.shields.io/github/release/gudcodes/gdc-client.svg)](https://github.com/MurphyMarkW/gdc-client/releases) [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![Build Status](https://travis-ci.org/MurphyMarkW/gdc-client.svg?branch=master)](https://travis-ci.org/MurphyMarkW/gdc-client)
 
 A community go implementation of the [Genomic Data Commons](https://gdc.nci.nih.gov/) Command Line Client and related libraries.
 
 ## Installation
 
-Pre-built versions of the GDC Client [are available](https://github.com/gudCodes/gdc-client/releases)
+Pre-built versions of the GDC Client [are available](https://github.com/MurphyMarkW/gdc-client/releases)
 for most major operating systems and architectures. Simply download and
 extract the binary in order to use the client.
 
@@ -14,7 +14,7 @@ extract the binary in order to use the client.
 The GDC Client can be built from source using the Golang [Go command](https://golang.org/doc/).
 
 ```
-go get github.com/gudCodes/gdc-client
+go get github.com/MurphyMarkW/gdc-client
 ```
 
 This will download and build the `gdc-client` package along with all external
